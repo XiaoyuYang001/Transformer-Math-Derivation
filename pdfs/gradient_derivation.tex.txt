@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{amsmath}
+\title{Multi-Head Attention Gradient Derivation}
+\author{Your Name}
+
+\begin{document}
+\maketitle
+
+\section{Notations}
+\begin{itemize}
+    \item $Q, K, V$: Query, Key, Value matrices
+    \item $W_Q^l, W_K^l$: Weight matrices for head $l$
+    \item $d_k$: Dimension of key vectors
+\end{itemize}
+
+\section{Gradient Calculation}
+The attention output for head $l$:
+\begin{equation}
+    A^l = \text{Softmax}\left(\frac{QW_Q^l (KW_K^l)^T}{\sqrt{d_k}}\right)V
+\end{equation}
+
+The gradient w.r.t $W_Q^l$:
+\begin{align}
+    \frac{\partial L}{\partial W_Q^l} &= \frac{\partial L}{\partial A^l} \cdot \frac{\partial A^l}{\partial W_Q^l} \\
+    &= \delta^l \cdot Q^T \cdot \left(\frac{\partial \text{Softmax}(S)}{\partial S} \odot \frac{KW_K^l}{\sqrt{d_k}}\right)
+\end{align}
+where $S = \frac{QW_Q^l (KW_K^l)^T}{\sqrt{d_k}}$.
+\end{document}
