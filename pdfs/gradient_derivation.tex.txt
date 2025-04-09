@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \title{Multi-Head Attention Gradient Derivation}
-\author{Your Name}
+\author{Xiaoyu Yang}
 
 \begin{document}
 \maketitle
